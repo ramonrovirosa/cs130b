@@ -20,12 +20,17 @@ int main() {
     ifstream myfile ("points300.txt");
     if (myfile.is_open())
     {
+    getline(myfile,line);
+//    cout << "The number of values is" <<line << '\n';
+    int totalNumber = atoi(line.c_str());
+    int xCords[totalNumber];
+    int yCords[totalNumber];
+
 //        while ( getline (myfile,line) )
 //        {
+
           getline(myfile,line);
-          cout << "The number of values is" <<line << '\n';
-          getline(myfile,line);
-          cout << "points"<<line<<'\n';
+          cout << "points: "<<line<<'\n';
 //        }
 //        myfile.close();
     }

@@ -29,11 +29,11 @@ int main() {
     string num1 = "";
     string num2 = "";
 
-    while ( c = getchar() != ' ' ){
+    while ( c = getc(myfile) != ' ' ){
         num1 += c;
 
     }
-    while ( c = getchar() != '\n' ){
+    while ( c = getc(myfile) != '\n' ){
             num2 += c;
 
     }

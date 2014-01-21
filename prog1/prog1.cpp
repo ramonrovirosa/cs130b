@@ -39,13 +39,18 @@ int main() {
             while ( (c = myfile.get()) != '\n' ){
                 numY += c;
             }
-        yCords[index]=atoi(numY.c_str());
-        index++;
-        numX="";
-        numY="";
+            yCords[index]=atoi(numY.c_str());
+            index++;
+            numX="";
+            numY="";
         }
-        cout << "num1: "<<numX<<'\n';
-        cout << "num2: "<<numY<<'\n';
+
+        for(int i=0;i<totalNumber,i++){
+            cout<<"X position: "<<xCords[i]<<"\n";
+            cout<<"Y position: "<<yCords[i]<<"\n";
+
+        }
+
         myfile.close();
     }
     else cout << "Unable to open file";

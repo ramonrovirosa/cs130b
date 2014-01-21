@@ -21,16 +21,29 @@ int main() {
     if (myfile.is_open())
     {
     getline(myfile,line);
-//    cout << "The number of values is" <<line << '\n';
     int totalNumber = atoi(line.c_str());
     int xCords[totalNumber];
     int yCords[totalNumber];
 
+    char c;
+    string num1 = '';
+    string num2 = '';
+
+    while ( c = getchar() != ' ' ){
+        num1 += c;
+
+    }
+    while ( c = getchar() != '\n' ){
+            num2 += c;
+
+    }
+
 //        while ( getline (myfile,line) )
 //        {
 
-          getline(myfile,line);
-          cout << "points: "<<line<<'\n';
+//          getline(myfile,line);
+          cout << "num1: "<<num1<<'\n';
+          cout << "num2: "<<num2<<'\n';
 //        }
 //        myfile.close();
     }

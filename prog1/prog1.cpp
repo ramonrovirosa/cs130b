@@ -14,6 +14,20 @@
 using namespace std;
 
 int main() {
-    int *a = generatePoints(300);
+    generatePoints();
+
+    string line;
+    ifstream myfile ("points300.txt");
+    if (myfile.is_open())
+    {
+//        while ( getline (myfile,line) )
+//        {
+          cout << line << '\n';
+//        }
+//        myfile.close();
+    }
+
+    else cout << "Unable to open file";
+
     return 0;
 }

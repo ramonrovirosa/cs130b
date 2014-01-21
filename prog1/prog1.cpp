@@ -50,10 +50,10 @@ int main() {
             numY="";
         }
         arraysCreated:
-        for(int i=0;i<totalNumber;i++){
-            cout<<"X position: "<<xCords[i]<<"\n";
-            cout<<"Y position: "<<yCords[i]<<"\n";
-        }
+//        for(int i=0;i<totalNumber;i++){
+//            cout<<"X position:" <<xCords[i]<<"\n";
+//            cout<<"Y position: "<<yCords[i]<<"\n";
+//        }
 
         myfile.close();
     }

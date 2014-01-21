@@ -52,8 +52,8 @@ int generatePoints() {
 /*
  * 
  */
-int main() {
-    //generatePoints();
-    return 0;
-}
+//int main() {
+//    //generatePoints();
+//    return 0;
+//}
 

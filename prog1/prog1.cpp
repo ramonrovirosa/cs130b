@@ -29,8 +29,8 @@ int main() {
         string numY = "";
         int index=0;
 
-        while ( getline (myfile,line) ){
-        //put x value into array
+        while ( c != EOF ){
+            //put x value into array
             while ( (c = myfile.get()) != ' ' ){
                 numX += c;
             }

@@ -48,7 +48,6 @@ int *generatePoints() {
 //            myfile << line;
         }
         myfile.close();
-        pointArray
 
     } else {
         cout << "Can't open the file!" << endl;

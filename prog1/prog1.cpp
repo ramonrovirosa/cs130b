@@ -41,6 +41,8 @@ int main() {
             }
         yCords[index]=atoi(numY.c_str());
         index++;
+        numX='';
+        numY='';
         }
         cout << "num1: "<<numX<<'\n';
         cout << "num2: "<<numY<<'\n';

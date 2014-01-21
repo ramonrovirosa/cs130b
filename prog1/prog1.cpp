@@ -9,7 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <generateData.cpp>
+#include "generateData.cpp"
 
 using namespace std;
 

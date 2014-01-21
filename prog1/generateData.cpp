@@ -15,7 +15,6 @@ using namespace std;
 int generatePoints() {
     ofstream myfile;
     myfile.open("points300.txt");
-    int pointArray[1+2*totalNumber];
     if (myfile.is_open()) {
         string input;
         int totalNumber;
@@ -32,7 +31,6 @@ int generatePoints() {
         getline(cin, input);
         biggestY = atoi(input.c_str());
 
-        pointArray[0]=totalNumber;
         for (int i = 0; i < totalNumber; i++) {
             int xcor = rand() % biggestX + 1;
             int ycor = rand() % biggestY + 1;
@@ -51,7 +49,7 @@ int generatePoints() {
         cout << "Can't open the file!" << endl;
     }
 
-    return pointArray;
+    return 0;
 }
 
 /*

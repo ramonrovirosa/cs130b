@@ -12,18 +12,18 @@
 
 using namespace std;
 
-int *generatePoints() {
+int *generatePoints(int totalNumber) {
     ofstream myfile;
     myfile.open("points300.txt");
     if (myfile.is_open()) {
         string input;
-        int totalNumber;
+//        int totalNumber;
         int biggestX;
         int biggestY;
-        cout << "Please enter an integer value: ";
-        getline(cin, input);
-        totalNumber = atoi(input.c_str());
-        myfile << totalNumber << endl;
+//        cout << "Please enter an integer value: ";
+//        getline(cin, input);
+//        totalNumber = atoi(input.c_str());
+//        myfile << totalNumber << endl;
         cout << "Largest X value: ";
         getline(cin, input);
         biggestX = atoi(input.c_str());

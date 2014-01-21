@@ -14,6 +14,6 @@
 using namespace std;
 
 int main() {
-    int *a = generatePoints();
+    int *a = generatePoints(300);
     return 0;
 }

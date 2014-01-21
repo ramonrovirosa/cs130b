@@ -18,34 +18,34 @@ int main() {
 
     string line;
     ifstream myfile ("points300.txt");
-    if (myfile.is_open())
-    {
-    getline(myfile,line);
-    int totalNumber = atoi(line.c_str());
-    int xCords[totalNumber];
-    int yCords[totalNumber];
+    if (myfile.is_open()){
+        getline(myfile,line);
+        int totalNumber = atoi(line.c_str());
+        int xCords[totalNumber];
+        int yCords[totalNumber];
 
-    char c;
-    string num1 = "";
-    string num2 = "";
+        char c;
+        string numX = "";
+        string numY = "";
+        int index=0;
 
-    while ( (c = myfile.get()) != ' ' ){
-        num1 += c;
+        while ( getline (myfile,line) ){
+        //put x value into array
+            while ( (c = myfile.get()) != ' ' ){
+                numX += c;
+            }
+            xCords[index]=atoi(numX.c_str());
+            //put y value into array
+            while ( (c = myfile.get()) != '\n' ){
+                numY += c;
+            }
+        yCords[index]=atoi(numY.c_str());
+        index++;
+        }
+        cout << "num1: "<<num1<<'\n';
+        cout << "num2: "<<num2<<'\n';
+        myfile.close();
     }
-    while ( (c = myfile.get()) != '\n' ){
-        num2 += c;
-    }
-
-//        while ( getline (myfile,line) )
-//        {
-
-//          getline(myfile,line);
-          cout << "num1: "<<num1<<'\n';
-          cout << "num2: "<<num2<<'\n';
-//        }
-//        myfile.close();
-    }
-
     else cout << "Unable to open file";
 
     return 0;

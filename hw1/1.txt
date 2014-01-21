@@ -1,0 +1,22 @@
+//a
+Given:
+Hanoi(n, A, B, C) ⇒ Hanoi(1, A, C, B) + Hanoi(n − 1, A, B, C) + Hanoi(1, C, B, A)
+
+This strategy will NOT work to solve towers of Hanoi.
+
+CounterExample:
+Given n=4
+After performing Hanoi(1, A, C, B)...
+There is no way to move n-1 disks onto B without stacking a larger disk on top of a smaller one, which would be illegal.
+
+
+//b
+If n = 2^k
+Hanoi(n, A, B, C) ⇒ Hanoi(n/2, A, C, B) + Hanoi(n/2, A, B, C) + Hanoi(n/2, C, B, A)
+This strategy will NOT work to solve towers of Hanoi.
+
+CounterExample:
+Case n=1;
+Given k=0, we get n=1.
+So in the case where n=1 (we have one disk)
+This strategy will not work because it would be impossible to divide one single disk in half.

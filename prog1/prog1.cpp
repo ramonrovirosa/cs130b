@@ -26,8 +26,8 @@ int main() {
     int yCords[totalNumber];
 
     char c;
-    string num1 = '';
-    string num2 = '';
+    string num1 = "";
+    string num2 = "";
 
     while ( c = getchar() != ' ' ){
         num1 += c;

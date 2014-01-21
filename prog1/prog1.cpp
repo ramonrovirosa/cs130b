@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   main.cpp
  * Author: nguyenvandonganh
  *
@@ -50,10 +50,9 @@ int generatePoints() {
 }
 
 /*
- * 
+ *
  */
 int main() {
-    //generatePoints();
+    generatePoints();
     return 0;
 }
-

@@ -42,8 +42,8 @@ int main() {
         yCords[index]=atoi(numY.c_str());
         index++;
         }
-        cout << "num1: "<<num1<<'\n';
-        cout << "num2: "<<num2<<'\n';
+        cout << "num1: "<<numX<<'\n';
+        cout << "num2: "<<numY<<'\n';
         myfile.close();
     }
     else cout << "Unable to open file";

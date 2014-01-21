@@ -22,7 +22,8 @@ int main() {
     {
 //        while ( getline (myfile,line) )
 //        {
-          cout << line << '\n';
+          getline(myfile,line);
+          cout << "The number of values is" <<line << '\n';
 //        }
 //        myfile.close();
     }

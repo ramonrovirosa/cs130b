@@ -15,6 +15,7 @@ using namespace std;
 int *generatePoints(int totalNumber) {
     ofstream myfile;
     myfile.open("points300.txt");
+    int pointArray[1+2*totalNumber];
     if (myfile.is_open()) {
         string input;
 //        int totalNumber;
@@ -23,14 +24,14 @@ int *generatePoints(int totalNumber) {
 //        cout << "Please enter an integer value: ";
 //        getline(cin, input);
 //        totalNumber = atoi(input.c_str());
-//        myfile << totalNumber << endl;
+        myfile << totalNumber << endl;
         cout << "Largest X value: ";
         getline(cin, input);
         biggestX = atoi(input.c_str());
         cout << "Largest Y value: ";
         getline(cin, input);
         biggestY = atoi(input.c_str());
-        int pointArray[1+2*totalNumber];
+
         pointArray[0]=totalNumber;
         for (int i = 0; i < totalNumber; i++) {
             int xcor = rand() % biggestX + 1;

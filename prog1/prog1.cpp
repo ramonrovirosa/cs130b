@@ -29,15 +29,19 @@ int main() {
         string numY = "";
         int index=0;
 
-        while ( (c = myfile.get()) != EOF ){
+        while ( true ){
+
             //put x value into array
-            numX+=c;
-            while ( (c = myfile.get()) != ' ' && (c = myfile.get()) != EOF ){
+            while ( (c = myfile.get()) != ' ' ){
+                if(c == EOF)
+                    goto arraysCreated;
                 numX += c;
             }
             xCords[index]=atoi(numX.c_str());
             //put y value into array
-            while ( (c = myfile.get()) != '\n'  && (c = myfile.get()) != EOF){
+            while ( (c = myfile.get()) != '\n' ){
+                if(c == EOF)
+                    goto arraysCreated;
                 numY += c;
             }
             yCords[index]=atoi(numY.c_str());
@@ -45,7 +49,7 @@ int main() {
             numX="";
             numY="";
         }
-
+        arraysCreated:
         for(int i=0;i<totalNumber;i++){
             cout<<"X position: "<<xCords[i]<<"\n";
             cout<<"Y position: "<<yCords[i]<<"\n";

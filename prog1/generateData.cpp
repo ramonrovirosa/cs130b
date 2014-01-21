@@ -12,7 +12,7 @@
 
 using namespace std;
 
-int generatePoints() {
+int *generatePoints() {
     ofstream myfile;
     myfile.open("points300.txt");
     if (myfile.is_open()) {
@@ -30,23 +30,31 @@ int generatePoints() {
         cout << "Largest Y value: ";
         getline(cin, input);
         biggestY = atoi(input.c_str());
+        int pointArray[1+2*totalNumber];
+        pointArray[0]=totalNumber;
         for (int i = 0; i < totalNumber; i++) {
             int xcor = rand() % biggestX + 1;
             int ycor = rand() % biggestY + 1;
-            stringstream xcorStr;
-            xcorStr << xcor;
-            stringstream ycorStr;
-            ycorStr << ycor;
-            string line = xcorStr.str() + " " + ycorStr.str() + "\n";
-            cout << line;
-            myfile << line;
+
+            pointArray[1+i]=xcor;
+            pointArray[totalNumber+i]=ycor;
+
+//            stringstream xcorStr;
+//            xcorStr << xcor;
+//            stringstream ycorStr;
+//            ycorStr << ycor;
+//            string line = xcorStr.str() + " " + ycorStr.str() + "\n";
+//            cout << line;
+//            myfile << line;
         }
         myfile.close();
+        pointArray
+
     } else {
         cout << "Can't open the file!" << endl;
     }
 
-    return 0;
+    return pointArray;
 }
 
 /*

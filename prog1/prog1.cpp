@@ -25,7 +25,7 @@ int main() {
           getline(myfile,line);
           cout << "The number of values is" <<line << '\n';
           getline(myfile,line);
-          cout << "points"<<line<'\n';
+          cout << "points"<<line<<'\n';
 //        }
 //        myfile.close();
     }

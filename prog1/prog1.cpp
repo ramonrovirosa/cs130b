@@ -29,14 +29,15 @@ int main() {
         string numY = "";
         int index=0;
 
-        while ( c != EOF ){
+        while ( (c = myfile.get()) != EOF ){
             //put x value into array
-            while ( (c = myfile.get()) != ' ' ){
+            numX+=c;
+            while ( (c = myfile.get()) != ' ' && (c = myfile.get()) != EOF ){
                 numX += c;
             }
             xCords[index]=atoi(numX.c_str());
             //put y value into array
-            while ( (c = myfile.get()) != '\n' ){
+            while ( (c = myfile.get()) != '\n'  && (c = myfile.get()) != EOF){
                 numY += c;
             }
             yCords[index]=atoi(numY.c_str());

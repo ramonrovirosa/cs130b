@@ -51,13 +51,20 @@ int main() {
         }
         arraysCreated:
 //        for(int i=0;i<totalNumber;i++){
-//            cout<<"X position:" <<xCords[i]<<"\n";
+//            cout<<"X position" <<i<< ": "<<xCords[i]<<"\n";
 //            cout<<"Y position: "<<yCords[i]<<"\n";
 //        }
 
         myfile.close();
+        ClosestPairBruteForce(totalNumber,xCords, yCords )
     }
     else cout << "Unable to open file";
 
+    return 0;
+}
+
+//Brute Force
+void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
+    cout< "inside of ClosestPair"<<"\n";
     return 0;
 }

@@ -81,6 +81,7 @@ void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
     int distanceMinimum=-1;
     int iMinimum[2];
     int jMinimum[2];
+    int comparisons=0;
 
     for(int i=0;i<totalNumber;i++){
        for(int j=i+1;j<totalNumber;j++){
@@ -94,6 +95,7 @@ void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
 
         jMinimum[0] = xCords[j];
         jMinimum[1] = yCords[j];
+        comparisons++;
         }
         else if(distanceMinimum > distance) {
             distanceMinimum = distance;
@@ -102,13 +104,15 @@ void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
 
             jMinimum[0] = xCords[j];
             jMinimum[1] = yCords[j];
+            comparisons++;
         }
        }
     }
-    cout<<"distanceMinimum: "<< distanceMinimum << "\n";
-    cout<<"point1: "<< iMinimum[0]<<","<<iMinimum[1] << "\n";
-    cout<<"point2: "<< jMinimum[0]<<","<<jMinimum[1] << "\n";
-
+//    cout<<"distanceMinimum: "<< distanceMinimum << "\n";
+//    cout<<"point1: "<< iMinimum[0]<<","<<iMinimum[1] << "\n";
+//    cout<<"point2: "<< jMinimum[0]<<","<<jMinimum[1] << "\n";
+      cout<<iMinimum[0]<<" "<<iMinimum[1]<<" "<<jMinimum[0]<<" "<<jMinimum[1]<<"\n";
+      cout<<comparisons<<"\n";
 }
 
 //Divide & Conquer

@@ -67,6 +67,6 @@ int main() {
 
 //Brute Force
 void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
-    cout< "inside of ClosestPair"<<"\n";
+    cout< "inside of ClosestPair"<<'\n';
     return 0;
 }

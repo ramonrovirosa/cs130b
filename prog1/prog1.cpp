@@ -79,19 +79,29 @@ int main() {
 
 void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
     int distanceMinimum=-1;
-    int iMinimum[2],jMinimum[2];
+    int iMinimum[2];
+    int jMinimum[2];
 
-    for(int i=0;i<totalNumber-1;i++){
+    for(int i=0;i<totalNumber;i++){
        for(int j=i+1;j<totalNumber;j++){
         int p[2]= {xCords[i],yCords[i]};
         int q[2]= {xCords[j],yCords[j]};
         //distance formula (x2-x1)^2 + (y2-y1)^2
         int distance = pow(q[0]-p[0],2)+ pow(q[1]-p[1],2);
-        if(distanceMinimum == -1) distanceMinimum = distance;
+        if(distanceMinimum == -1){ distanceMinimum = distance;
+        iMinimum[0] = xCords[i];
+        iMinimum[1] = yCords[i];
+
+        jMinimum[0] = xCords[j];
+        jMinimum[1] = yCords[j];
+        }
         else if(distanceMinimum > distance) {
             distanceMinimum = distance;
-            iMinimum[0] = xCords[i]; iMinimum[1] = yCords[i];
-            jMinimum[0] = xCords[j]; jMinimum[1] = yCords[j];
+            iMinimum[0] = xCords[i];
+            iMinimum[1] = yCords[i];
+
+            jMinimum[0] = xCords[j];
+            jMinimum[1] = yCords[j];
         }
        }
     }

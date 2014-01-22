@@ -58,7 +58,7 @@ int main() {
 //        }
 
         myfile.close();
-        ClosestPairBruteForce(totalNumber,xCords, yCords )
+        ClosestPairBruteForce(totalNumber,xCords,yCords);
     }
     else cout << "Unable to open file";
 

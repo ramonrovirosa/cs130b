@@ -14,6 +14,8 @@
 
 using namespace std;
 
+int* quickSortY(int arr[], int arrY[], int left, int right);
+int* quickSortX(int arr[], int left, int right);
 void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] );
 void ClosestPairDivideConquer(int totalNumber, int xCords[], int yCords[] );
 
@@ -61,6 +63,17 @@ int main() {
 
         myfile.close();
         ClosestPairBruteForce(totalNumber,xCords,yCords);
+
+        //first sort the arrays by the xCords positions
+        int *yCords2 = quickSortY(xCords, yCords, 0,totalNumber-1);
+        int *xCords2 = quickSortX(xCords, 0,totalNumber-1);
+//         for(int i=0;i<totalNumber;i++){
+//                    cout<<"X position" <<i<< ": "<<xCords2[i]<<" , ";
+//                    cout<<"Y position: "<<yCords2[i]<<"\n";
+//                }
+
+
+        ClosestPairDivideConquer(totalNumber,xCords2,yCords2);
     }
     else cout << "Unable to open file";
 
@@ -95,7 +108,6 @@ void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
 
         jMinimum[0] = xCords[j];
         jMinimum[1] = yCords[j];
-        comparisons++;
         }
         else if(distanceMinimum > distance) {
             distanceMinimum = distance;
@@ -104,8 +116,8 @@ void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
 
             jMinimum[0] = xCords[j];
             jMinimum[1] = yCords[j];
-            comparisons++;
         }
+        comparisons++;
        }
     }
 //    cout<<"distanceMinimum: "<< distanceMinimum << "\n";
@@ -119,4 +131,79 @@ void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
 //Brute Force
 void ClosestPairDivideConquer(int totalNumber, int xCords[], int yCords[] ){
     //Divide & Conquer
+
+    // If there are 2 or 3 points, then use brute force
+        if (totalNumber <= 3)
+            return ClosestPairBruteForce(totalNumber, xCords,yCords);
+
+
+
+}
+
+//sort the y array
+int* quickSortY(int arr[], int arrY[], int left, int right)
+ {
+  int i = left, j = right;
+  int tmp,tmpY;
+  int pivot = arr[(left + right) / 2];
+
+  /* partition */
+  while (i <= j) {
+        while (arr[i] < pivot)
+              i++;
+        while (arr[j] > pivot)
+              j--;
+        if (i <= j) {
+              tmp = arr[i];
+              tmpY=arrY[i];
+
+              arr[i] = arr[j];
+              arrY[i]= arrY[j];
+
+              arr[j] = tmp;
+              arrY[j]=tmpY;
+
+              i++;
+              j--;
+    }
+}
+/* recursion */
+if (left < j)
+    quickSortY(arr, arrY, left, j);
+if (i < right)
+    quickSortY(arr, arrY, i, right);
+
+return arrY;
+}
+//sort the x array
+int* quickSortX(int arr[], int left, int right)
+ {
+  int i = left, j = right;
+  int tmp;
+  int pivot = arr[(left + right) / 2];
+
+  /* partition */
+  while (i <= j) {
+        while (arr[i] < pivot)
+              i++;
+        while (arr[j] > pivot)
+              j--;
+        if (i <= j) {
+              tmp = arr[i];
+
+              arr[i] = arr[j];
+
+              arr[j] = tmp;
+
+              i++;
+              j--;
+    }
+}
+/* recursion */
+if (left < j)
+    quickSortX(arr, left, j);
+if (i < right)
+    quickSortX(arr, i, right);
+
+return arr;
 }

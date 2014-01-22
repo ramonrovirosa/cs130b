@@ -13,6 +13,8 @@
 
 using namespace std;
 
+void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] );
+
 int main() {
     generatePoints();
 

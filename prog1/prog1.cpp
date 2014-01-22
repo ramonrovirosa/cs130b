@@ -16,8 +16,24 @@ using namespace std;
 
 int* quickSortY(int arr[], int arrY[], int left, int right);
 int* quickSortX(int arr[], int left, int right);
-void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] );
-void ClosestPairDivideConquer(int totalNumber, int xCords[], int yCords[] );
+struct Point;
+struct distanceBetweenPoints;
+distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] );
+void ClosestPairDivideConquer(int totalNumber, Point P[], int xCords[], int yCords[] );
+
+struct Point
+{
+    int x;
+    int y;
+};
+
+struct distanceBetweenPoints
+{
+    int x1,y1;
+    int x2,y2;
+    int distance, comparisons;
+
+};
 
 int main() {
     generatePoints();
@@ -62,18 +78,28 @@ int main() {
 //        }
 
         myfile.close();
-        ClosestPairBruteForce(totalNumber,xCords,yCords);
 
+        //BRUTE FORCE ALGORITHM
+        distanceBetweenPoints bruteForce = ClosestPairBruteForce(totalNumber,xCords,yCords);
+        cout<<bruteForce.x1<<" "<<bruteForce.y1<<" , "<<bruteForce.x2<<" "<<bruteForce.y2<<"\n";
+        cout<<bruteForce.comparisons<<"\n";
+
+        //DIVIDE & CONQUER ALGORITHM
         //first sort the arrays by the xCords positions
         int *yCords2 = quickSortY(xCords, yCords, 0,totalNumber-1);
         int *xCords2 = quickSortX(xCords, 0,totalNumber-1);
+
+
+        Point points[totalNumber];
+        for(int i=0;i<totalNumber;i++){
+            points[i].x=xCords2[i];
+            points[i].y=yCords2[i];
+        }
 //         for(int i=0;i<totalNumber;i++){
-//                    cout<<"X position" <<i<< ": "<<xCords2[i]<<" , ";
-//                    cout<<"Y position: "<<yCords2[i]<<"\n";
-//                }
-
-
-        ClosestPairDivideConquer(totalNumber,xCords2,yCords2);
+//                    cout<<"X position" <<i<< ": "<<points[i].x<<" , ";
+//                    cout<<"Y position: "<<points[i].y<<"\n";
+//         }
+        ClosestPairDivideConquer(totalNumber,points,xCords2,yCords2);
     }
     else cout << "Unable to open file";
 
@@ -90,7 +116,7 @@ int main() {
 //   closestPair = (p, q)
 //return closestPair
 
-void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
+distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
     int distanceMinimum=-1;
     int iMinimum[2];
     int jMinimum[2];
@@ -120,21 +146,26 @@ void ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
         comparisons++;
        }
     }
-//    cout<<"distanceMinimum: "<< distanceMinimum << "\n";
-//    cout<<"point1: "<< iMinimum[0]<<","<<iMinimum[1] << "\n";
-//    cout<<"point2: "<< jMinimum[0]<<","<<jMinimum[1] << "\n";
-      cout<<iMinimum[0]<<" "<<iMinimum[1]<<" "<<jMinimum[0]<<" "<<jMinimum[1]<<"\n";
-      cout<<comparisons<<"\n";
+
+    distanceBetweenPoints min = {iMinimum[0], iMinimum[1],jMinimum[0],jMinimum[1],distanceMinimum, comparisons};
+    return min;
 }
 
 //Divide & Conquer
 //Brute Force
-void ClosestPairDivideConquer(int totalNumber, int xCords[], int yCords[] ){
-    //Divide & Conquer
-
+void ClosestPairDivideConquer(int totalNumber, Point point[], int xCords[], int yCords[] ){
     // If there are 2 or 3 points, then use brute force
-        if (totalNumber <= 3)
-            return ClosestPairBruteForce(totalNumber, xCords,yCords);
+    if (totalNumber <= 3)
+        ClosestPairBruteForce(totalNumber, xCords,yCords);
+    else{
+        //midpoint
+        int middle = (totalNumber-1)/2;
+        Point midPoint = point[middle];
+
+
+
+
+    }
 
 
 

@@ -32,7 +32,8 @@ struct distanceBetweenPoints
 {
     int x1,y1;
     int x2,y2;
-    int distance, comparisons;
+    float distance;
+    int comparisons;
 
 };
 
@@ -120,7 +121,7 @@ int main() {
 //return closestPair
 
 distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
-    int distanceMinimum=-1;
+    float distanceMinimum=-1;
     int iMinimum[2];
     int jMinimum[2];
     int comparisons=0;
@@ -130,7 +131,7 @@ distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int y
         int p[2]= {xCords[i],yCords[i]};
         int q[2]= {xCords[j],yCords[j]};
         //distance formula (x2-x1)^2 + (y2-y1)^2
-        int distance = pow(q[0]-p[0],2)+ pow(q[1]-p[1],2);
+        float distance = pow(q[0]-p[0],2)+ pow(q[1]-p[1],2);
         if(distanceMinimum == -1){ distanceMinimum = distance;
         iMinimum[0] = xCords[i];
         iMinimum[1] = yCords[i];
@@ -158,12 +159,13 @@ distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int y
 //Brute Force
 distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], int xCords[], int yCords[] ){
     // If there are 2 or 3 points, then use brute force
-    if (totalNumber <= 3)
+    if (totalNumber <= 3){
         return ClosestPairBruteForce(totalNumber, xCords,yCords);
+    }
     else{
         //midpoint
         int middle = (totalNumber)/2;
-        Point midPoint = point[middle-1];
+        Point midPoint = (totalNumber%2)?point[middle]:point[middle-1];
 
         int leftX[middle];
         int leftY[middle];
@@ -182,19 +184,16 @@ distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], i
                 right[i-middle].x=xCords[i]; right[i-middle].y=yCords[i];
             }
         }
-//        cout<<"rightX,rightY "<<rightX[0]<<","<<rightY[0]<<"\n";
-//        cout<<"right[1] "<<right[1].x<<","<<right[1].y<<"\n";
-//        cout<<"totalNumber-middle"<<totalNumber-middle<<"\n";
 
         // Consider the vertical line passing through the middle point
         // calculate the smallest distance dl on left of middle point and
         // dr on right side
         distanceBetweenPoints dl = ClosestPairDivideConquer(middle, left, leftX, leftY );
         distanceBetweenPoints dr = ClosestPairDivideConquer(totalNumber-middle, right, rightX, rightY);
-
         distanceBetweenPoints d = (dl.distance < dr.distance)? dl : dr;
         d.comparisons = dl.comparisons + dr.comparisons;
 
+//        cout<<"x1y1, x2y2: "<<d.x1<<" "<<d.y1<<" , "<<d.x2<<" "<<d.y2<<" distance :"<<d.distance<<"\n";
 
         // Build an array strip[] that contains points close (closer than d)
         // to the line passing through the middle point
@@ -205,23 +204,24 @@ distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], i
                 strip[j] = point[i], j++;
          }
 
-
         float min = sqrt(d.distance);  // Initialize the minimum distance as d
-
         qsort(strip, j, sizeof(Point), compareY);
 
         // Pick all points one by one and try the next points till the difference
         // between y coordinates is smaller than d.
         // This is a proven fact that this loop runs at most 6 times
-        for (int i = 0; i < j; ++i)
-            for (int k = i+1; k < j && (strip[k].y - strip[i].y) < min; ++k)
-                if ( sqrt(pow((strip[i].x - strip[k].x),2)+pow((strip[i].y - strip[k].y),2)) < min){
-                    min = sqrt(pow((strip[i].x - strip[k].x),2)+pow((strip[i].y - strip[k].y),2));
+        for (int i = 0; i < j; ++i){
+            for (int k = i+1; k < j && (strip[k].y - strip[i].y) < min; ++k){
+                float compare = sqrt(pow((strip[i].x - strip[k].x),2)+pow((strip[i].y - strip[k].y),2));
+                if (  compare < min){
+                    min = compare;
                     d.x1=strip[i].x; d.y1=strip[i].y;
                     d.x2=strip[k].x; d.y2=strip[k].y;
                     d.comparisons++;
-                    d.distance=min;
+                    d.distance=pow(min,2);
                 }
+            }
+        }
         return d;
     }
 }

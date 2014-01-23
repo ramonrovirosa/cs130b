@@ -99,7 +99,9 @@ int main() {
 //                    cout<<"X position" <<i<< ": "<<points[i].x<<" , ";
 //                    cout<<"Y position: "<<points[i].y<<"\n";
 //         }
-        ClosestPairDivideConquer(totalNumber,points,xCords2,yCords2);
+        distanceBetweenPoints DivideAndConquer = ClosestPairDivideConquer(totalNumber,points,xCords2,yCords2);
+        cout<<DivideAndConquer.x1<<" "<<DivideAndConquer.y1<<" , "<<DivideAndConquer.x2<<" "<<DivideAndConquer.y2<<"\n";
+        cout<<DivideAndConquer.comparisons<<"\n";
     }
     else cout << "Unable to open file";
 
@@ -159,39 +161,39 @@ distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], i
         return ClosestPairBruteForce(totalNumber, xCords,yCords);
     else{
         //midpoint
-        int middle = (totalNumber-1)/2;
-        Point midPoint = point[middle];
+        int middle = (totalNumber)/2;
+        Point midPoint = point[middle-1];
 
         int leftX[middle];
         int leftY[middle];
         int rightX[totalNumber-middle];
         int rightY[totalNumber-middle];
+        Point left[middle];
+        Point right[totalNumber-middle];
         for(int i=0;i<totalNumber;i++){
-            if(i<=middle){
+            if(i<middle){
                 leftX[i]=xCords[i];
                 leftY[i]=yCords[i];
+                left[i].x=xCords[i]; left[i].y=yCords[i];
             }else{
-                rightX[i] = xCords[i];
-                rightY[i] = xCords[i];
+                rightX[i-middle] = xCords[i];
+                rightY[i-middle] = yCords[i];
+                right[i-middle].x=xCords[i]; right[i-middle].y=yCords[i];
             }
         }
+//        cout<<"rightX,rightY "<<rightX[0]<<","<<rightY[0]<<"\n";
+//        cout<<"right[1] "<<right[1].x<<","<<right[1].y<<"\n";
+//        cout<<"totalNumber-middle"<<totalNumber-middle<<"\n";
 
         // Consider the vertical line passing through the middle point
         // calculate the smallest distance dl on left of middle point and
         // dr on right side
-        distanceBetweenPoints dl = ClosestPairDivideConquer(middle, point, leftX, leftY );
-        distanceBetweenPoints dr = ClosestPairDivideConquer(totalNumber-middle, point + middle, rightX, rightY);
+        distanceBetweenPoints dl = ClosestPairDivideConquer(middle, left, leftX, leftY );
+        distanceBetweenPoints dr = ClosestPairDivideConquer(totalNumber-middle, right, rightX, rightY);
 
         distanceBetweenPoints d = (dl.distance < dr.distance)? dl : dr;
-
         return d;
-
-
-
     }
-
-
-
 }
 
 //sort the y array

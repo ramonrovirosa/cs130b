@@ -18,6 +18,7 @@ float* quickSortX(float arr[], int left, int right);
 struct Point;
 struct distanceBetweenPoints;
 int compareY(const void* a, const void* b);
+int compareX(const void* a, const void* b);
 distanceBetweenPoints ClosestPairBruteForce(int totalNumber, float xCords[], float yCords[] );
 distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point P[], float xCords[], float yCords[] );
 
@@ -88,9 +89,21 @@ int main() {
 
         //DIVIDE & CONQUER ALGORITHM
         //first sort the arrays by the xCords positions
-        float *yCords2 = quickSortY(xCords, yCords, 0,totalNumber-1);
-        float *xCords2 = quickSortX(xCords, 0,totalNumber-1);
+//        float *yCords2 = quickSortY(xCords, yCords, 0,totalNumber-1);
+//        float *xCords2 = quickSortX(xCords, 0,totalNumber-1);
 
+        Point divConqPre[totalNumber];
+        for(int i=0;i<totalNumber;i++){
+               divConqPre[i].x=xCords[i];
+               divConqPre[i].y=yCords[i];
+        }
+        qsort(divConqPre, totalNumber, sizeof(Point), compareX);
+        float xCords2[totalNumber];
+        float yCords2[totalNumber];
+        for(int i=0;i<totalNumber;i++){
+           xCords2[i] = divConqPre[i].x;
+           yCords2[i]=  divConqPre[i].y;
+        }
 
         Point points[totalNumber];
         for(int i=0;i<totalNumber;i++){
@@ -263,17 +276,17 @@ float* quickSortY(float arr[], float arrY[], int left, int right)
               arrY[i]= arrY[j];
 
               arr[j] = tmp;
-              arrY[j]=tmpY;
+              arrY[j]= tmpY;
 
               i++;
               j--;
-    }
-}
+        }
+  }
     /* recursion */
     if (left < j)
         quickSortY(arr, arrY, left, j);
     if (i < right)
-        quickSortY(arr, arrY, i, right);
+        quickSortY(arr, arrY, i, right-1);
 
     return arrY;
 }
@@ -305,7 +318,7 @@ float* quickSortX(float arr[], int left, int right)
     if (left < j)
         quickSortX(arr, left, j);
     if (i < right)
-        quickSortX(arr, i, right);
+        quickSortX(arr, i, right-1);
 
     return arr;
 }
@@ -314,4 +327,9 @@ int compareY(const void* a, const void* b)
 {
     Point *p1 = (Point *)a,   *p2 = (Point *)b;
     return (p1->y - p2->y);
+}
+int compareX(const void* a, const void* b)
+{
+    Point *p1 = (Point *)a,   *p2 = (Point *)b;
+    return (p1->x - p2->x);
 }

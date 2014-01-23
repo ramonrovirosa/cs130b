@@ -18,6 +18,7 @@ int* quickSortY(int arr[], int arrY[], int left, int right);
 int* quickSortX(int arr[], int left, int right);
 struct Point;
 struct distanceBetweenPoints;
+int compareY(const void* a, const void* b);
 distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] );
 distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point P[], int xCords[], int yCords[] );
 
@@ -193,6 +194,25 @@ distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], i
 
         distanceBetweenPoints d = (dl.distance < dr.distance)? dl : dr;
         d.comparisons = dl.comparisons + dr.comparisons;
+
+
+        // Build an array strip[] that contains points close (closer than d)
+        // to the line passing through the middle point
+        Point strip[totalNumber];
+        int j = 0;
+        for (int i = 0; i < totalNumber; i++)
+            if (abs(point[i].x - midPoint.x) < sqrt(d.distance))
+                strip[j] = point[i], j++;
+
+
+        float min = sqrt(d.distance);  // Initialize the minimum distance as d
+
+        qsort(strip, j, sizeof(Point), compareY);
+        cout<<"j is: "<<j<<"\n";
+        for(int k=0;k<j;k++){
+            cout<<"Sorted Strip? "<<strip[k].x<<","<<strip[k].y<<"\n";
+        }
+
         return d;
     }
 }
@@ -263,4 +283,10 @@ if (i < right)
     quickSortX(arr, i, right);
 
 return arr;
+}
+
+int compareY(const void* a, const void* b)
+{
+    Point *p1 = (Point *)a,   *p2 = (Point *)b;
+    return (p1->y - p2->y);
 }

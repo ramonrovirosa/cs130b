@@ -19,7 +19,7 @@ int* quickSortX(int arr[], int left, int right);
 struct Point;
 struct distanceBetweenPoints;
 distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] );
-void ClosestPairDivideConquer(int totalNumber, Point P[], int xCords[], int yCords[] );
+distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point P[], int xCords[], int yCords[] );
 
 struct Point
 {
@@ -153,15 +153,38 @@ distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int y
 
 //Divide & Conquer
 //Brute Force
-void ClosestPairDivideConquer(int totalNumber, Point point[], int xCords[], int yCords[] ){
+distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], int xCords[], int yCords[] ){
     // If there are 2 or 3 points, then use brute force
     if (totalNumber <= 3)
-        ClosestPairBruteForce(totalNumber, xCords,yCords);
+        return ClosestPairBruteForce(totalNumber, xCords,yCords);
     else{
         //midpoint
         int middle = (totalNumber-1)/2;
         Point midPoint = point[middle];
 
+        int leftX[middle];
+        int leftY[middle];
+        int rightX[totalNumber-middle];
+        int rightY[totalNumber-middle];
+        for(int i=0;i<totalNumber;i++){
+            if(i<=middle){
+                leftX[i]=xCords[i];
+                leftY[i]=yCords[i];
+            }else{
+                rightX[i] = xCords[i];
+                rightY[i] = xCords[i];
+            }
+        }
+
+        // Consider the vertical line passing through the middle point
+        // calculate the smallest distance dl on left of middle point and
+        // dr on right side
+        distanceBetweenPoints dl = ClosestPairDivideConquer(middle, point, leftX, leftY );
+        distanceBetweenPoints dr = ClosestPairDivideConquer(totalNumber-middle, point + middle, rightX, rightY);
+
+        distanceBetweenPoints d = (dl.distance < dr.distance)? dl : dr;
+
+        return d;
 
 
 

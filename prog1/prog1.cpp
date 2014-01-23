@@ -200,19 +200,28 @@ distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], i
         // to the line passing through the middle point
         Point strip[totalNumber];
         int j = 0;
-        for (int i = 0; i < totalNumber; i++)
+        for (int i = 0; i < totalNumber; i++){
             if (abs(point[i].x - midPoint.x) < sqrt(d.distance))
                 strip[j] = point[i], j++;
+         }
 
 
         float min = sqrt(d.distance);  // Initialize the minimum distance as d
 
         qsort(strip, j, sizeof(Point), compareY);
-        cout<<"j is: "<<j<<"\n";
-        for(int k=0;k<j;k++){
-            cout<<"Sorted Strip? "<<strip[k].x<<","<<strip[k].y<<"\n";
-        }
 
+        // Pick all points one by one and try the next points till the difference
+        // between y coordinates is smaller than d.
+        // This is a proven fact that this loop runs at most 6 times
+        for (int i = 0; i < j; ++i)
+            for (int k = i+1; k < j && (strip[k].y - strip[i].y) < min; ++k)
+                if ( sqrt(pow((strip[i].x - strip[k].x),2)+pow((strip[i].y - strip[k].y),2)) < min){
+                    min = sqrt(pow((strip[i].x - strip[k].x),2)+pow((strip[i].y - strip[k].y),2));
+                    d.x1=strip[i].x; d.y1=strip[i].y;
+                    d.x2=strip[k].x; d.y2=strip[k].y;
+                    d.comparisons++;
+                    d.distance=min;
+                }
         return d;
     }
 }

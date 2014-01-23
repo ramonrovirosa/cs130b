@@ -141,11 +141,11 @@ distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int y
         }
         else if(distanceMinimum > distance) {
             distanceMinimum = distance;
-            iMinimum[0] = xCords[i];
-            iMinimum[1] = yCords[i];
+                iMinimum[0] = xCords[i];
+                iMinimum[1] = yCords[i];
 
-            jMinimum[0] = xCords[j];
-            jMinimum[1] = yCords[j];
+                jMinimum[0] = xCords[j];
+                jMinimum[1] = yCords[j];
         }
         comparisons++;
        }
@@ -221,6 +221,16 @@ distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], i
                     d.distance=pow(min,2);
                 }
             }
+        }
+        //arrange the ordered pair from smallest x to largest x
+        if(d.x1 > d.x2){
+            int xtemp, ytemp;
+            xtemp=d.x1;
+            ytemp=d.y1;
+            d.x1=d.x2;
+            d.y1=d.y2;
+            d.x2=xtemp;
+            d.y2=ytemp;
         }
         return d;
     }

@@ -192,6 +192,7 @@ distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], i
         distanceBetweenPoints dr = ClosestPairDivideConquer(totalNumber-middle, right, rightX, rightY);
 
         distanceBetweenPoints d = (dl.distance < dr.distance)? dl : dr;
+        d.comparisons = dl.comparisons + dr.comparisons;
         return d;
     }
 }

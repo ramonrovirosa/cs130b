@@ -1,8 +1,7 @@
 /*
- * File:   main.cpp
- * Author: nguyenvandonganh
- *
- * Created on January 13, 2014, 4:42 PM
+    Ramon Rovirosa
+    CS130B
+    Prog1
  */
 
 #include <cstdlib>
@@ -14,39 +13,40 @@
 
 using namespace std;
 
-int* quickSortY(int arr[], int arrY[], int left, int right);
-int* quickSortX(int arr[], int left, int right);
+float* quickSortY(float arr[], float arrY[], int left, int right);
+float* quickSortX(float arr[], int left, int right);
 struct Point;
 struct distanceBetweenPoints;
 int compareY(const void* a, const void* b);
-distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] );
-distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point P[], int xCords[], int yCords[] );
+distanceBetweenPoints ClosestPairBruteForce(int totalNumber, float xCords[], float yCords[] );
+distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point P[], float xCords[], float yCords[] );
 
 struct Point
 {
-    int x;
-    int y;
+    float x;
+    float y;
 };
 
 struct distanceBetweenPoints
 {
-    int x1,y1;
-    int x2,y2;
+    float x1,y1;
+    float x2,y2;
     float distance;
     int comparisons;
 
 };
 
 int main() {
-    generatePoints();
+//    generatePoints();
 
     string line;
-    ifstream myfile ("points300.txt");
-    if (myfile.is_open()){
-        getline(myfile,line);
+//    ifstream myfile ("points300.txt");
+//    if (myfile.is_open()){
+        getline(cin,line);
         int totalNumber = atoi(line.c_str());
-        int xCords[totalNumber];
-        int yCords[totalNumber];
+//        cout<<"total number: "<<totalNumber<<"\n";
+        float xCords[totalNumber];
+        float yCords[totalNumber];
 
         char c;
         string numX = "";
@@ -56,19 +56,19 @@ int main() {
         while ( true ){
 
             //put x value into array
-            while ( (c = myfile.get()) != ' ' ){
+            while ( (c = cin.get()) != ' ' ){
                 if(c == EOF)
                     goto arraysCreated;
                 numX += c;
             }
-            xCords[index]=atoi(numX.c_str());
+            xCords[index]=atof(numX.c_str());
             //put y value into array
-            while ( (c = myfile.get()) != '\n' ){
+            while ( (c = cin.get()) != '\n' ){
                 if(c == EOF)
                     goto arraysCreated;
                 numY += c;
             }
-            yCords[index]=atoi(numY.c_str());
+            yCords[index]=atof(numY.c_str());
             index++;
             numX="";
             numY="";
@@ -79,7 +79,7 @@ int main() {
 //            cout<<"Y position: "<<yCords[i]<<"\n";
 //        }
 
-        myfile.close();
+//        myfile.close();
 
         //BRUTE FORCE ALGORITHM
         distanceBetweenPoints bruteForce = ClosestPairBruteForce(totalNumber,xCords,yCords);
@@ -88,8 +88,8 @@ int main() {
 
         //DIVIDE & CONQUER ALGORITHM
         //first sort the arrays by the xCords positions
-        int *yCords2 = quickSortY(xCords, yCords, 0,totalNumber-1);
-        int *xCords2 = quickSortX(xCords, 0,totalNumber-1);
+        float *yCords2 = quickSortY(xCords, yCords, 0,totalNumber-1);
+        float *xCords2 = quickSortX(xCords, 0,totalNumber-1);
 
 
         Point points[totalNumber];
@@ -97,15 +97,12 @@ int main() {
             points[i].x=xCords2[i];
             points[i].y=yCords2[i];
         }
-//         for(int i=0;i<totalNumber;i++){
-//                    cout<<"X position" <<i<< ": "<<points[i].x<<" , ";
-//                    cout<<"Y position: "<<points[i].y<<"\n";
-//         }
+
         distanceBetweenPoints DivideAndConquer = ClosestPairDivideConquer(totalNumber,points,xCords2,yCords2);
         cout<<DivideAndConquer.x1<<" "<<DivideAndConquer.y1<<" "<<DivideAndConquer.x2<<" "<<DivideAndConquer.y2<<"\n";
         cout<<DivideAndConquer.comparisons<<"\n";
-    }
-    else cout << "Unable to open file";
+//    }
+//    else cout << "Unable to open file";
 
     return 0;
 }
@@ -120,16 +117,16 @@ int main() {
 //   closestPair = (p, q)
 //return closestPair
 
-distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int yCords[] ){
+distanceBetweenPoints ClosestPairBruteForce(int totalNumber, float xCords[], float yCords[] ){
     float distanceMinimum=-1;
-    int iMinimum[2];
-    int jMinimum[2];
+    float iMinimum[2];
+    float jMinimum[2];
     int comparisons=0;
 
     for(int i=0;i<totalNumber;i++){
        for(int j=i+1;j<totalNumber;j++){
-        int p[2]= {xCords[i],yCords[i]};
-        int q[2]= {xCords[j],yCords[j]};
+        float p[2]= {xCords[i],yCords[i]};
+        float q[2]= {xCords[j],yCords[j]};
         //distance formula (x2-x1)^2 + (y2-y1)^2
         float distance = pow(q[0]-p[0],2)+ pow(q[1]-p[1],2);
         if(distanceMinimum == -1){ distanceMinimum = distance;
@@ -153,7 +150,7 @@ distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int y
 
     distanceBetweenPoints d = {iMinimum[0], iMinimum[1],jMinimum[0],jMinimum[1],distanceMinimum, comparisons};
      if(d.x1 > d.x2){
-                int xtemp, ytemp;
+                float xtemp, ytemp;
                 xtemp=d.x1;
                 ytemp=d.y1;
                 d.x1=d.x2;
@@ -166,7 +163,7 @@ distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int y
 
 //Divide & Conquer
 //Brute Force
-distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], int xCords[], int yCords[] ){
+distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], float xCords[], float yCords[] ){
     // If there are 2 or 3 points, then use brute force
     if (totalNumber <= 3){
         return ClosestPairBruteForce(totalNumber, xCords,yCords);
@@ -176,10 +173,10 @@ distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], i
         int middle = (totalNumber)/2;
         Point midPoint = (totalNumber%2)?point[middle]:point[middle-1];
 
-        int leftX[middle];
-        int leftY[middle];
-        int rightX[totalNumber-middle];
-        int rightY[totalNumber-middle];
+        float leftX[middle];
+        float leftY[middle];
+        float rightX[totalNumber-middle];
+        float rightY[totalNumber-middle];
         Point left[middle];
         Point right[totalNumber-middle];
         for(int i=0;i<totalNumber;i++){
@@ -209,7 +206,7 @@ distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], i
         Point strip[totalNumber];
         int j = 0;
         for (int i = 0; i < totalNumber; i++){
-            if (abs(point[i].x - midPoint.x) < sqrt(d.distance))
+            if (fabs(point[i].x - midPoint.x) < sqrt(d.distance))
                 strip[j] = point[i], j++;
          }
 
@@ -233,7 +230,7 @@ distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], i
         }
         //arrange the ordered pair from smallest x to largest x
         if(d.x1 > d.x2){
-            int xtemp, ytemp;
+            float xtemp, ytemp;
             xtemp=d.x1;
             ytemp=d.y1;
             d.x1=d.x2;
@@ -246,10 +243,10 @@ distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], i
 }
 
 //sort the y array
-int* quickSortY(int arr[], int arrY[], int left, int right)
+float* quickSortY(float arr[], float arrY[], int left, int right)
  {
   int i = left, j = right;
-  int tmp,tmpY;
+  float tmp,tmpY;
   int pivot = arr[(left + right) / 2];
 
   /* partition */
@@ -272,19 +269,19 @@ int* quickSortY(int arr[], int arrY[], int left, int right)
               j--;
     }
 }
-/* recursion */
-if (left < j)
-    quickSortY(arr, arrY, left, j);
-if (i < right)
-    quickSortY(arr, arrY, i, right);
+    /* recursion */
+    if (left < j)
+        quickSortY(arr, arrY, left, j);
+    if (i < right)
+        quickSortY(arr, arrY, i, right);
 
-return arrY;
+    return arrY;
 }
 //sort the x array
-int* quickSortX(int arr[], int left, int right)
+float* quickSortX(float arr[], int left, int right)
  {
   int i = left, j = right;
-  int tmp;
+  float tmp;
   int pivot = arr[(left + right) / 2];
 
   /* partition */
@@ -304,13 +301,13 @@ int* quickSortX(int arr[], int left, int right)
               j--;
     }
 }
-/* recursion */
-if (left < j)
-    quickSortX(arr, left, j);
-if (i < right)
-    quickSortX(arr, i, right);
+    /* recursion */
+    if (left < j)
+        quickSortX(arr, left, j);
+    if (i < right)
+        quickSortX(arr, i, right);
 
-return arr;
+    return arr;
 }
 
 int compareY(const void* a, const void* b)

@@ -83,7 +83,7 @@ int main() {
 
         //BRUTE FORCE ALGORITHM
         distanceBetweenPoints bruteForce = ClosestPairBruteForce(totalNumber,xCords,yCords);
-        cout<<bruteForce.x1<<" "<<bruteForce.y1<<" , "<<bruteForce.x2<<" "<<bruteForce.y2<<"\n";
+        cout<<bruteForce.x1<<" "<<bruteForce.y1<<" "<<bruteForce.x2<<" "<<bruteForce.y2<<"\n";
         cout<<bruteForce.comparisons<<"\n";
 
         //DIVIDE & CONQUER ALGORITHM
@@ -102,7 +102,7 @@ int main() {
 //                    cout<<"Y position: "<<points[i].y<<"\n";
 //         }
         distanceBetweenPoints DivideAndConquer = ClosestPairDivideConquer(totalNumber,points,xCords2,yCords2);
-        cout<<DivideAndConquer.x1<<" "<<DivideAndConquer.y1<<" , "<<DivideAndConquer.x2<<" "<<DivideAndConquer.y2<<"\n";
+        cout<<DivideAndConquer.x1<<" "<<DivideAndConquer.y1<<" "<<DivideAndConquer.x2<<" "<<DivideAndConquer.y2<<"\n";
         cout<<DivideAndConquer.comparisons<<"\n";
     }
     else cout << "Unable to open file";
@@ -151,8 +151,17 @@ distanceBetweenPoints ClosestPairBruteForce(int totalNumber, int xCords[], int y
        }
     }
 
-    distanceBetweenPoints min = {iMinimum[0], iMinimum[1],jMinimum[0],jMinimum[1],distanceMinimum, comparisons};
-    return min;
+    distanceBetweenPoints d = {iMinimum[0], iMinimum[1],jMinimum[0],jMinimum[1],distanceMinimum, comparisons};
+     if(d.x1 > d.x2){
+                int xtemp, ytemp;
+                xtemp=d.x1;
+                ytemp=d.y1;
+                d.x1=d.x2;
+                d.y1=d.y2;
+                d.x2=xtemp;
+                d.y2=ytemp;
+     }
+    return d;
 }
 
 //Divide & Conquer

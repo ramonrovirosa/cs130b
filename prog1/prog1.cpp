@@ -162,7 +162,7 @@ distanceBetweenPoints ClosestPairBruteForce(int totalNumber, float xCords[], flo
     }
 
     distanceBetweenPoints d = {iMinimum[0], iMinimum[1],jMinimum[0],jMinimum[1],distanceMinimum, comparisons};
-     if(d.x1 > d.x2){
+     if(d.x1 > d.x2 || (d.x1==d.x2 && d.y1 > d.y2)){
                 float xtemp, ytemp;
                 xtemp=d.x1;
                 ytemp=d.y1;
@@ -242,7 +242,7 @@ distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], f
             }
         }
         //arrange the ordered pair from smallest x to largest x
-        if(d.x1 > d.x2){
+        if(d.x1 > d.x2 || (d.x1==d.x2 && d.y1 > d.y2)){
             float xtemp, ytemp;
             xtemp=d.x1;
             ytemp=d.y1;

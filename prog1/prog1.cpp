@@ -220,7 +220,8 @@ distanceBetweenPoints ClosestPairDivideConquer(int totalNumber, Point point[], f
         int j = 0;
         for (int i = 0; i < totalNumber; i++){
             if (fabs(point[i].x - midPoint.x) < sqrt(d.distance))
-                strip[j] = point[i], j++;
+                strip[j] = point[i];
+                j++;
          }
 
         float min = sqrt(d.distance);  // Initialize the minimum distance as d

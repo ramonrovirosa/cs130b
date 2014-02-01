@@ -100,11 +100,15 @@ a)
             2000            1999000     1837    0.0009189
             20000           199990000   21549   0.000107
 
-        k: Brute Force Comparisions
-        k':Divide & Conquer Comparisons
+        k: # of Brute Force Comparisions
+        k':# of Divide & Conquer Comparisons
 
         An analysis of the Brute Force method as compared to the Divide&Conquer method to finding the
-        minimum distance between a set of points shows that not only is the Divide
+        minimum distance between a set of points shows that not only is the Divide and conquer method
+        takes significantly less comparisons, but also that the ratio of difference in comparisons also
+        decreases seamingly logarithmicly meaning that it makes more & more sense to use Divide & Conquer
+        as the input size grows.
+
 
 
 

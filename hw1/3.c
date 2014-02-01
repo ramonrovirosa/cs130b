@@ -32,7 +32,7 @@ Complexity: O(n^2)
 medianUnsortedB(Array, left, right) {
       int i = left, j = right;
       int tmp;
-      int pivot = arr[(left + right) / 2];
+      int pivot = Array[(left + right) / 2];
       int middle= Array.length/2;
 
       /* partition */

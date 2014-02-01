@@ -55,3 +55,13 @@ Pair *danceCouples(Dancer dancers[]){
     return matchedCouples;
 
 }
+
+//Complexity
+Quicksort: O(n*log(n))
+Split array into male & female: O(n)
+Pair  dance couples: O(n)
+
+Overall Complexity:
+T(n) = O(n*log(n)) + O(n) + O(n)
+
+Complexity: O(n*log(n))

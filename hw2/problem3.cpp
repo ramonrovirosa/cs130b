@@ -11,6 +11,9 @@ Greedy strategy interval selection technique:
     Given the (x_start, x_end) list:
     { (0,100), (10,20), (30,40) , (70,90)  }
 
+    1. XXXXXXXXXXXXXXXXXXXXXXXXXX
+    2. XXX 3. XXXXX 4.XXXX 5.XXXX
+
     This strategy of selecting intervals would return 1 (the first) interval that overlaps
     all the other intervals, when we know that the optimal result would involve returning
     the 3 intervals: (10,20), (30,40) , (70,90)
@@ -42,3 +45,7 @@ Greedy strategy interval selection technique:
     So in the case were a smaller interval overlaps two larger intervals, then this algorithm would not be optimal.
 
 4. the number of other intervals that they overlap with (fewer overlaps first)
+
+    Yes, will generate optimal results.
+
+    Because, intervals with less overlaps will naturally be picked before intervals that overlap them.

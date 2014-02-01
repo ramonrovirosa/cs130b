@@ -38,5 +38,5 @@ max number of nickels and then pennies.
 Since it is always true that if you have one coin of higher value e.g. a
 quarter you need more than one coins of lower values, e.g. 2 dimes + 1 nickel to
 make the same amount of change. The greedy algorithms makes sure that there are no
-more than the necessary number of coins, and is therefore optimal. 
+more than the necessary number of coins, and is therefore optimal.
 

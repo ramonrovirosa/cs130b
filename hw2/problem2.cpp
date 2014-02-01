@@ -65,3 +65,13 @@ Overall Complexity:
 T(n) = O(n*log(n)) + O(n) + O(n)
 
 Complexity: O(n*log(n))
+
+
+Optimal Solution: Yes
+
+The algorithm involves first sorting the men & women by height shortest to tallest.
+Then the idea is to match the couples beginning with the two shortest in the group and moving
+along to the tallest pairs.
+
+By sorting the couples first & then matching them in order, we find that all couples within the expected
+range are matched. This gives us an optimal number of pair matches between couples.

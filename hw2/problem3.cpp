@@ -46,6 +46,19 @@ Greedy strategy interval selection technique:
 
 4. the number of other intervals that they overlap with (fewer overlaps first)
 
-    Yes, will generate optimal results.
+    No. Will not generate optimal results.
 
-    Because, intervals with less overlaps will naturally be picked before intervals that overlap them.
+    Given the (x_start, x_end) list:
+    { (0,20), (50,70), (100,120), (140, 160)
+           (10, 60),(69,110),  (110,150),
+           (10,60),            (110,150),
+           (10,60),            (110,150)
+                                            }
+    }
+    1. XXXXX   2.XXXXX  3.XXXXXXX  4.XXXXX
+         5.XXXXXX  6.XXXXXXX 7.XXXXXXX
+         8.XXXXXX            9.XXXXXXX
+        10.XXXXXX           11.XXXXXXX
+
+    This algorithm will pick 6 first since it has two overlaps then it will pick 1 & then 4.
+    Which will generate 3 intervals, instead of the optimal solution which should be 4 intervals returned.

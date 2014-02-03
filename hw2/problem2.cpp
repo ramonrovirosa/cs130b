@@ -1,4 +1,3 @@
-//Ramon Rovirosa
 //problem 2
 //matching dance couples
 

@@ -1,5 +1,5 @@
-Ramon Rovirosa
-Problem 4.
+//Ramon Rovirosa
+//Problem 4.
 
 Assume n programs of length l1, l2, · · · , ln are to be stored on a tape. Program i is to be
 retrieved with frequency fi. If the program are stored in the order of i1, i2, · · · , in,
@@ -56,7 +56,7 @@ c. Show that storing programs in non-increasing order of fi/li does minimize ERT
     But this change is an improvement since: f(i=a)/l(i=a)>f(i=b)/l(i=b)
     Thus: l(i=b)f(i=b) - l(i=a)f(i=b) < 0.
     Which means that if two adjacent programs are out of order (b,a) instead of (a,b) based on the algorithm f/a,
-    we can improve the ERT by simply swapping them to be in ERT order. 
+    we can improve the ERT by simply swapping them to be in ERT order.
 
 
 

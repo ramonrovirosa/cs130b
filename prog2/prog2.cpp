@@ -81,6 +81,24 @@
     edgeMaxWeight[0]=0;
     checkedVertices[0]=-1;
 
+    for (int i=0; i<totalNumber-1;i++){
+            int min = INT_MAX, index;
+            for (int j=0;j < totalNumber;j++){
+                 if (verticesAdded[j]!=true && edgeMaxWeight[j]<min)
+                     min = edgeMaxWeight[j];
+                     index = j;
+            }
+
+            verticesAdded[index]=true;
+            int edgeIndex = index;
+
+            for (int k = 0; k < totalNumber; k++){
+                 if (primsGraph[k][edgeIndex] && checkedVertices[k] == false && primsGraph[k][edgeIndex] <  edgeMaxWeight[k])
+                                 checkedVertices[k]  = edgeIndex;
+                                 edgeMaxWeight[k] = primsGraph[k][edgeIndex];
+            }
+
+    }
     return 0;
  }
 

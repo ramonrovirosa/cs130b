@@ -136,7 +136,7 @@ int compareY(const void* a, const void* b)
 //        qsort(&output[0], output.size(), sizeof(Point2), compareY);
         qsort(&output[0], output.size(), sizeof(Point2), compareX);
         for (int i = 1; i < totalNumber; i++)
-            cout<<"    "<<output.at(i).x<<"    "<<output.at(i).y<<"\n";
+            cout<<output.at(i).x<<" "<<output.at(i).y<<"\n";
 
     return 0;
  }

@@ -23,12 +23,27 @@
      float y;
      Point(float x1, float y1):x(x1),y(y1){}
  };
- struct Point2
- {
+struct Point2
+{
     int x;
     int y;
     Point2(int x1, int y1):x(x1),y(y1){}
- };
+};
+
+int compareX(const void* a, const void* b){
+    Point2 *p1 = (Point2 *)a,   *p2 = (Point2 *)b;
+    int comparison = p1->x - p2->x;
+    if(comparison == 0)
+        return p1->y-p2->y;
+    else
+        return (p1->x - p2->x);
+}
+int compareY(const void* a, const void* b)
+{
+
+    Point2 *p1 = (Point2 *)a,   *p2 = (Point2 *)b;
+    return (p1->y - p2->y);
+}
 
  int main(){
     string line;
@@ -99,15 +114,11 @@
             int edgeIndex = index;
 
             for (int k=0;k<totalNumber;k++){
-                 cout<<"primsGraph:"<<primsGraph[edgeIndex][k]<<" edgeMaxWeight[k] "<<edgeMaxWeight[k]<< " checkedVertices "<<checkedVertices <<"\n";
-
                  if (primsGraph[edgeIndex][k]!=0 && verticesAdded[k] == false && primsGraph[edgeIndex][k]<=edgeMaxWeight[k]){
                                  checkedVertices[k]  = edgeIndex;
                                  edgeMaxWeight[k] = primsGraph[edgeIndex][k];
                  }
             }
-            cout<<"\n";
-
     }
 
        vector<Point2>output;
@@ -119,9 +130,13 @@
           else{
              output.push_back(Point2(i,checkedVertices[i]));
           }
-          
-          printf("%d - %d\n", output.at(i).x, output.at(i).y);
+
+
         }
+//        qsort(&output[0], output.size(), sizeof(Point2), compareY);
+        qsort(&output[0], output.size(), sizeof(Point2), compareX);
+        for (int i = 1; i < totalNumber; i++)
+            printf("%d - %d\n", output.at(i).x, output.at(i).y);
 
     return 0;
  }

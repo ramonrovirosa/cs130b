@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11009582-2357-4cfc-99cc-f7905c03d03a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prog2/prog2" afterPath="$PROJECT_DIR$/prog2/prog2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="11009582-2357-4cfc-99cc-f7905c03d03a" name="Default" comment="" />
     <ignored path="CS130b.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -159,7 +156,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="hw2" />
+              <option name="myItemId" value="prog2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -195,6 +192,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/prog2" />
       <recent name="$PROJECT_DIR$/prog1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">

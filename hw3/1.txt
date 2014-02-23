@@ -1,0 +1,30 @@
+//Ramon Rovirosa
+//CS 130B
+//#1
+
+No, the greedy algorithm will not work for all possible coin denominations.
+Counterexample:
+
+Coins:  6,5,4,1
+Change: 9
+
+Greedy Algorithm:  6 + 1 + 1 + 1 ...4 coins
+Optimal Algorithm: 5+4           ...2 coins
+
+Algorithm:
+
+Change(Coins[], #ofCoins, changeToMake){
+    C[0]=0
+    for i:1->changeToMake
+        min=INFINITY
+        for j:1->#ofCoins
+            if Coins[j]<=changeToMake
+                if C[i - coins[j]] + 1 < min
+                coin = j
+                min= C[i - coins[j]] + 1
+        C[i]=min
+        Denomination[i]=coin
+}
+
+Complexity: O(n^2)
+

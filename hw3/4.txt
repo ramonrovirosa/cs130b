@@ -1,0 +1,33 @@
+// Ramon Rovirosa
+// Problem 4
+// You are given n intervals on the x-axis. You are to
+// ﬁnd a collection of non-overlapping intervals such that the sum of the lengths of all selected intervals is maximized
+// (not the number of intervals is maximized).
+
+a) Given an interval
+    1.......................................N
+
+ Given a greedy algorithm that first find the interval with the greatest length first and so on,
+ No the greedy algorithm will not produce the optimal solution. Here is a counter example
+
+  Given an interval
+     1.................................................N
+     XXXXXXXXXXXX_inteval_1_XXXXXXXXXX
+      XXXXXXXXXinterval_2XXXXXXXXX XXXXinterval_3XXXXXXX
+
+  Given the greedy solution interval 1, which is of greater length than 2 & 3 will be picked first.
+  But the optimal solution would be to pick 2&3 together as they combined have the maximum sum of length.
+
+ b)
+    //sort the intervals with (x1,x2) by ending x2 position
+    sortedIntervals[] = sortIntervals(intervals);
+    lengthOfIntervals[0]=0
+    //for all the intervals
+    for i: 2->sortedIntervals[].length
+        //overlap is the interval from 1 to i-1 that overlap i
+        overlap = overlapingInterval();
+        if( overlap != null )
+            lengthOfIntervals[i] = max( lengthOfIntervals[overlap]+length(sortedIntervals[i]),lengthOfIntervals[i-1])
+        else
+            lengthOfIntervals[i] = max( length(i), lengthOfIntervals[i-1])
+    return sum

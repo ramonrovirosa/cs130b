@@ -1,0 +1,30 @@
+//Ramon Rovirosa
+//Problem 3
+//2 Warehouse Problem
+
+a)
+    Recurrence relation:
+    //The cost for sending supplies from W1 & W2 to Destination i is:
+
+   gi(x) = min{gi-1(x-x1,j)+c1,j(x1,j)+c2,j(dj-x1,j)}
+
+
+b)
+    Algorithm:
+
+    optimal[n]
+    min=INFINITY
+    for i: 0->n
+    	for x1,j: 0 -> dj
+    		if( gi-1(x-x1,j)+c1,j(x1,j)+c2,j(dj-x1,j) < min)
+    			min = gi-1(x-x1,j)+c1,j(x1,j)+c2,j(dj-x1,j)
+    			optimal[n] = x1,j
+
+    Complexity: O(n^2)
+
+c)
+    Show steps and tables of your DP algorithm on this particular problem instance: two warehouses with supply of 10
+    and 7 units, ﬁve destinations with demands of 4, 3, 2, 5, and 3 units. The cost of supplying these destinations from
+    warehouse one is 1, 2, 3, 1, 2/unit and from warehouse two is 2, 3, 3, 1, 1/unit.
+
+

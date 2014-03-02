@@ -14,13 +14,32 @@
  #include <float.h>
 
  using namespace std;
+double max(double left, double top, double diagonal){
+    int comp1 = left>top?left:top;
+    int max_  = diagonal>comp1? diagonal : comp1;
+    return max_;
+}
+
 
 //min(a,b, leftMatrix, topMatrix, diagonalMatrix, x, y, match, change, del)
- double min(int a, int b,
+ double compute(int a, int b,
             double leftMatrix, double topMatrix, double diagonalMatrix,
+            string x, string y,
             double match, double change, double del){
 
-    return 5.0;
+    double sim;
+
+    if(x[a] == y[b])
+        sim=match;
+    else
+        sim=change;
+
+    double left= leftMatrix + del;
+    double top = topMatrix + del;
+    double diagonal = diagonalMatrix + sim;
+
+    return max(left,top,diagonal);
+
  }
 
 
@@ -46,16 +65,14 @@
     }
     Matrix[0][0]=(x[0]==y[0])?2.0:-0.5;
 
+   //b=x, a=y
    for (int a = 1; a < j; a++){
        for(int b=1; b<i;b++){
             double leftMatrix=Matrix[b-1][a];
             double topMatrix=Matrix[b][a-1];
             double diagonalMatrix=Matrix[b-1][a-1];
-            cout<<leftMatrix<< "\n";
-            cout<<topMatrix<< "\n";
-            cout<<diagonalMatrix<< "\n";
 
-            Matrix[b][a] = min(a,b, leftMatrix, topMatrix, diagonalMatrix, match, change, del);
+            Matrix[b][a] = compute(b,a, leftMatrix, topMatrix, diagonalMatrix,x,y,match, change, del);
         }
     }
 

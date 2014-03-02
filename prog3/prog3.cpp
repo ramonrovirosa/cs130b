@@ -15,8 +15,8 @@
 
  using namespace std;
 double max(double left, double top, double diagonal){
-    int comp1 = left>top?left:top;
-    int max_  = diagonal>comp1? diagonal : comp1;
+    double comp1 = left>top?left:top;
+    double max_  = diagonal>comp1? diagonal : comp1;
     return max_;
 }
 
@@ -62,10 +62,10 @@ double max(double left, double top, double diagonal){
     double Matrix[i][j];
 
     for(int a=0;a<i;a++){
-        Matrix[a][0] = del;
+        Matrix[a][0] = a*del;
     }
     for(int b=0;b<j;b++){
-        Matrix[0][b] = del;
+        Matrix[0][b] = b*del;
     }
     Matrix[0][0]=(x[0]==y[0])?match:change;
 

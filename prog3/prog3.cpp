@@ -28,7 +28,7 @@ double max(double left, double top, double diagonal){
             double match, double change, double del){
 
     double sim;
-
+    cout<<"x["<<a<<"] "<<x[a]<<" y["<<b<<"] "<<y[b]<<endl;
     if(x[a] == y[b])
         sim=match;
     else
@@ -51,19 +51,23 @@ double max(double left, double top, double diagonal){
     int i = x.length();
     int j = y.length();
 
-    double match=2.0;
-    double change=-.5;
-    double del=-1.0;
+//    double match=2.0;
+//    double change=-.5;
+//    double del=-1.0;
+
+    double match=1;
+    double change=-1.0;
+    double del=-2.0;
 
     double Matrix[i][j];
 
     for(int a=0;a<i;a++){
-        Matrix[a][0] = 1.0;
+        Matrix[a][0] = del;
     }
     for(int b=0;b<j;b++){
-        Matrix[0][b] = 1.0;
+        Matrix[0][b] = del;
     }
-    Matrix[0][0]=(x[0]==y[0])?2.0:-0.5;
+    Matrix[0][0]=(x[0]==y[0])?match:change;
 
    //b=x, a=y
    for (int a = 1; a < j; a++){
@@ -76,12 +80,12 @@ double max(double left, double top, double diagonal){
         }
     }
 
-//    for (int a=0; a< j;a++){
-//            for(int b=0; b<i;b++){
-//                cout<<Matrix[b][a]<< " ";
-//            }
-//            cout<<endl;
-//        }
+    for (int a=0; a< j;a++){
+            for(int b=0; b<i;b++){
+                cout<<Matrix[b][a]<< " ";
+            }
+            cout<<endl;
+        }
 
     return 0;
  }

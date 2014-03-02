@@ -44,24 +44,27 @@
     for(int b=0;b<j;b++){
         Matrix[0][b] = 1.0;
     }
-    cout<<"Matrix[0][10] "<<Matrix[0][10]<<endl;
     Matrix[0][0]=(x[0]==y[0])?2.0:-0.5;
 
    for (int a = 1; a < j; a++){
        for(int b=1; b<i;b++){
-            double leftMatrix=Matrix[a-1][b];
-            double topMatrix=Matrix[a][b-1];
-            double diagonalMatrix=Matrix[a-1][b-1];
+            double leftMatrix=Matrix[b-1][a];
+            double topMatrix=Matrix[b][a-1];
+            double diagonalMatrix=Matrix[b-1][a-1];
+            cout<<leftMatrix<< "\n";
+            cout<<topMatrix<< "\n";
+            cout<<diagonalMatrix<< "\n";
+
             Matrix[b][a] = min(a,b, leftMatrix, topMatrix, diagonalMatrix, match, change, del);
         }
     }
 
-    for (int a=0; a< j;a++){
-            for(int b=0; b<i;b++){
-                cout<<Matrix[b][a]<< " ";
-            }
-            cout<<endl;
-        }
+//    for (int a=0; a< j;a++){
+//            for(int b=0; b<i;b++){
+//                cout<<Matrix[b][a]<< " ";
+//            }
+//            cout<<endl;
+//        }
 
     return 0;
  }

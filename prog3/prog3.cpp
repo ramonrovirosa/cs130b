@@ -16,6 +16,16 @@
  using namespace std;
 
 
- int main(){
-   return 0;
+ int main(int argc, char* argv[]){
+    string x="GACGGATTAG";
+    string y="GATCGGAATAG";
+
+    int i = x.length();
+    int j = y.length();
+
+    int Matrix[i][j];
+
+
+
+    return 0;
  }

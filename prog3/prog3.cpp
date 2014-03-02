@@ -32,9 +32,11 @@
     int i = x.length();
     int j = y.length();
 
-    double match=2;
+    double match=2.0;
     double change=-.5;
-    double del=-1;
+    double del=-1.0;
+
+    double Matrix[i][j];
 
     for(int a=0;a<i;a++){
         Matrix[a][0] = 1.0;
@@ -50,13 +52,13 @@
             double leftMatrix=Matrix[a-1][b];
             double topMatrix=Matrix[a][b-1];
             double diagonalMatrix=Matrix[a-1][b-1];
-            Matrix[a][b] = min(a,b, leftMatrix, topMatrix, diagonalMatrix, match, change, del);
+            Matrix[b][a] = min(a,b, leftMatrix, topMatrix, diagonalMatrix, match, change, del);
         }
     }
 
     for (int a=0; a< j;a++){
             for(int b=0; b<i;b++){
-                cout<<Matrix[a][b]<< " ";
+                cout<<Matrix[b][a]<< " ";
             }
             cout<<endl;
         }

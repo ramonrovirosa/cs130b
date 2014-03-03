@@ -79,7 +79,6 @@ double max(double left, double top, double diagonal){
     }
     myReadFile2.close();
 
-
     int i = x.length();
     int j = y.length();
 
@@ -87,9 +86,24 @@ double max(double left, double top, double diagonal){
     double change=-.5;
     double del=-1.0;
 
-//    double match=1;
-//    double change=-1.0;
-//    double del=-2.0;
+    if(argc > 4){
+       for(int a=4;a<argc;a++){
+          if(strcmp(argv[a],"-m") == 0){
+            match = atof(argv[a+1]);
+            a++;
+           }
+
+          else if(strcmp(argv[a],"-c") == 0){
+            change = atof(argv[a+1]);
+            a++;
+          }
+
+          else if(strcmp(argv[a],"-d") == 0){
+            del = atof(argv[a+1]);
+            a++;
+          }
+       }
+    }
 
     double Matrix[i+1][j+1];
 
@@ -110,7 +124,7 @@ double max(double left, double top, double diagonal){
             Matrix[b][a] = compute(b,a, leftMatrix, topMatrix, diagonalMatrix,x,y,match, change, del);
         }
     }
-//
+
 //    for (int a=0; a<=j;a++){
 //            for(int b=0; b<=i;b++){
 //                if(Matrix[b][a] < -9)

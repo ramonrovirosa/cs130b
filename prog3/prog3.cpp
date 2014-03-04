@@ -52,7 +52,7 @@ double max(double left, double top, double diagonal){
     string x,y;
 
      ifstream myReadFile;
-     myReadFile.open(input1);
+     myReadFile.open(input1.c_str());
      char output[5000];
      if (myReadFile.is_open()) {
      while (!myReadFile.eof()) {
@@ -67,7 +67,7 @@ double max(double left, double top, double diagonal){
     myReadFile.close();
 
     ifstream myReadFile2;
-         myReadFile2.open(input2);
+         myReadFile2.open(input2.c_str());
          char output2[5000];
          if (myReadFile2.is_open()) {
          while (!myReadFile2.eof()) {

@@ -12,6 +12,7 @@
  #include <math.h>
  #include <stdio.h>
  #include <float.h>
+ #include <string.h>
 
  using namespace std;
 double max(double left, double top, double diagonal){

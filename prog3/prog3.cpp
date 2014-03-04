@@ -110,13 +110,7 @@ double max(double left, double top, double diagonal){
           }
        }
     }
-    vector<vector<double> > Matrix;
-     // Set up sizes. (HEIGHT x WIDTH)
-    Matrix.resize(j+1);
-    for (int a = 0; a < j+1; ++a)
-        Matrix[a].resize(i+1);
-    cout<<x.length()<<endl;
-    cout<<y.length()<<endl;
+    vector<vector<double> > Matrix(j+1, vector<double>(i+1));
 
 //    double Matrix[i+1][j+1];
 
@@ -151,6 +145,5 @@ double max(double left, double top, double diagonal){
 //        }
 
     cout<< Matrix[i][j]<<endl;
-
     return 0;
  }

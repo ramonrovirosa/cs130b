@@ -1,3 +1,3 @@
 all:
-	g++ prog3.cpp -o prog3
+	g++ -stdlib=libc++ prog3.cpp -o prog3
 

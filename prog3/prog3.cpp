@@ -36,8 +36,8 @@ double max(double left, double top, double diagonal){
         sim=change;
     }
 
-    double left= leftMatrix + del;
-    double top = topMatrix + del;
+    double left = leftMatrix + del;
+    double top  = topMatrix + del;
     double diagonal = diagonalMatrix + sim;
 
     return max(left,top,diagonal);
@@ -60,9 +60,6 @@ double max(double left, double top, double diagonal){
 
         myReadFile >> output;
         x = output;
-//        cout<<x<<endl;
-
-
      }
     }
     myReadFile.close();
@@ -75,15 +72,12 @@ double max(double left, double top, double diagonal){
 
             myReadFile2 >> output2;
             y = output2;
-//            cout<<y<<endl;
          }
     }
     myReadFile2.close();
 
 //    x="ATGGCGTTTAACCTTTCTGCAAAGAGCGCTTTCATTGTCGCGCTGCTGGCTTTCAGCGCCAGTGCTACACCTGTCGAACCCATCAGCCCTTGCGCCGCTGTAACCTGCAGCACCAATACCTTTTGCAATGTCATCAACGGCAAACCCGTATGCCTACCCATTTCGAGGCAGCAAAAATGTGGCAAGGCTGTTTGCGCCCCTGGCCACGTTTGCTGCAATTCTTCTTGTGGCATCTGCACCAAGCCCGGCGGCGTGTGCACTCAGCAAATCTGCCCAGATATCGAGTTACAGCCTGTTGAGCCTGCTCCTACGGTCGACAAGAGGGAGGACATTGTGAAGATTGAGGAGCCGGAACTCCCAGCGGTGAAGCCAACGAAGTGCGGACCTACACTTTGTGCTCCTGGAATAGTGTCTAGAGGCCACTTCTTCACCTGCCCCTCGCTACCTTTAACAACCCGCTCGCCAGCAGGCTGGGCCCGAGGACGTTCTGGTCCTCTTTCCAACTTTCAGATCCAGGTCCTCCAGATCGAGCTCTGGGGCCAGGCTTGTGATGTCGCCACGGGGCGCCTTATCCCAACGTCGAGACCCCGCCATTTCCCCCTACGCACGGGATCCCAGCCCCACAGGGGCATTGACCGCGACATCGATTCATCGGAGTCGGAGTCGGAGCTGGAGATCCACATCCCCGGGTTCGTACAAGTGTGA";
 //    y="ATGCCCACCAACTACGAAGACCGCAACTACTGGCATCAGCGGTTTGCGTCTGAGACATCGTTCGAATGGCTGGCCTCGTCTGAGCAATTTCTGGAGCTCTTTGCGCTCTATCTCAGACCACTTCCTAAAACTGCGAAAATTCTCCATCTCGGCTCCGGCACCAGCGACTTGCACAACCATCTGAGAGATTGTGGGTTTAGTAATGTCACAAATGTCGACTACGAGCCACTTGCTCTCGAGCGAGGTCAGGAGCTTGAACGGAAGCGGTTTGGGGATGTCAAGACAACCTACATAGTCAACGACGCGACCAAGATGGATCTACCTGACAAGTATAGAGTCTTTATCGACAAGTCCACCTCTGATGCTATCGCATGTGGTGGACACCAGGCTGTTTCCCTGCTTGCTGAAGCGATTCGCCGTCACATTGAAGACGATGGCTTGTGGCTATCACTCAGTTTCTCTCCATCACGTTACGAAGGGGTTAAAACACTTTTCGATGTTGAACTTGTCAGCAAGTTGCCAACGCCGAAGCTTAATCCATACGAGCCGGACATCTACTATTATGCCTATGCGCTGAGACCAAAACCTTGA";
-
-
 
     int i = x.length();
     int j = y.length();
@@ -110,9 +104,9 @@ double max(double left, double top, double diagonal){
           }
        }
     }
-    vector<vector<double> > Matrix(j+1, vector<double>(i+1));
 
-//    double Matrix[i+1][j+1];
+    //double Matrix[i+1][j+1];
+    vector<vector<double> > Matrix(i+1, vector<double>(j+1,DBL_MAX));
 
     for(int a=0;a<=i;a++){
         Matrix[a][0] = a*del;
@@ -121,28 +115,20 @@ double max(double left, double top, double diagonal){
         Matrix[0][b] = b*del;
     }
 
+
+    double leftMatrix;
+    double topMatrix;
+    double diagonalMatrix;
+
    //b=x, a=y
    for (int a = 1; a<= j; a++){
        for(int b=1;b<=i;b++){
-            double leftMatrix=Matrix[b-1][a];
-            double topMatrix=Matrix[b][a-1];
-            double diagonalMatrix=Matrix[b-1][a-1];
-
+            leftMatrix=Matrix[b-1][a];
+            topMatrix=Matrix[b][a-1];
+            diagonalMatrix=Matrix[b-1][a-1];
             Matrix[b][a] = compute(b,a, leftMatrix, topMatrix, diagonalMatrix,x,y,match, change, del);
         }
     }
-
-//    for (int a=0; a<=j;a++){
-//            for(int b=0; b<=i;b++){
-//                if(Matrix[b][a] < -9)
-//                    cout<<Matrix[b][a]<< " ";
-//                else if(Matrix[b][a] < 0 || Matrix[b][a] > 9)
-//                    cout<<""<<Matrix[b][a]<< "  ";
-//                else
-//                    cout<<" "<<Matrix[b][a]<< "  ";
-//            }
-//            cout<<endl;
-//        }
 
     cout<< Matrix[i][j]<<endl;
     return 0;

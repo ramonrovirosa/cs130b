@@ -27,7 +27,7 @@
     double error;
  };
 
-bool compare (Error a, Error b) { return (a.error < b.error); }
+bool compareSmallest (Error a, Error b) { return (a.error < b.error); }
 
 
  int main(){
@@ -37,7 +37,7 @@ bool compare (Error a, Error b) { return (a.error < b.error); }
     string x,y, comb;
     pointsXY input;
     vector<string> tokens;
-    vector<pointsXY> points;
+    vector<pointsXY> points, optimalPoints;
     size_t found;
 
     while( cin.getline(name, 256)){
@@ -86,7 +86,35 @@ bool compare (Error a, Error b) { return (a.error < b.error); }
                 distance.push_back(a);
             }
         }
-        sort(distance.begin(), distance.end(), compare);
+        sort(distance.begin(), distance.end(), compareSmallest);
+        int mid=distance.size()/2;
+        if(distance[mid].error<bestMedianEror || bestMedianEror<0){
+            bestMedianEror=distance[mid].error;
+            optimalPoints.clear();
+            for(int j=0;j<mid;j++){
+                optimalPoints.push_back(distance[j].point);
+//                cout<<optimalPoints[j].x<<endl;
+            }
+        }
     }
+
+    double x_times_y = 0;
+    double _x = 0;
+    double _y = 0;
+    double x_squared = 0;
+    int size=optimalPoints.size();
+
+    for(int i = 0; i <size; i++){
+           _x += optimalPoints[i].x;
+           _y += optimalPoints[i].y;
+          x_times_y += optimalPoints[i].x*optimalPoints[i].y;
+          x_squared += optimalPoints[i].x*optimalPoints[i].x;
+     }
+    double denom = size*x_squared - x_squared;
+    double m = (size*x_times_y - _x*_y)/denom;
+    double b = (_y*x_squared - _x*x_times_y)/denom;
+
+    cout << m << " " << b << endl;
+
     return 0;
  }

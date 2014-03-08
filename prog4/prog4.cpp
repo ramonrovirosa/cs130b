@@ -22,6 +22,14 @@
     double y;
  };
 
+ struct Error{
+    pointsXY point;
+    double error;
+ };
+
+bool compare (Error a, Error b) { return (a.error < b.error); }
+
+
  int main(){
     //get x,y points form input
     int n=0;
@@ -51,7 +59,7 @@
     int bestMedianEror=-1;
     int iter=0;
     int nIter=30;
-    while(iter<nIter){
+    while(iter<n){
         int seed1=rand()%n;
         int seed2=rand()%n;
         while(seed1==seed2){
@@ -61,11 +69,24 @@
         pointsXY p1 = points[seed1];
         pointsXY p2 = points[seed2];
 
+        //y=mx+b
         double m = (p2.y-p1.y)/(p2.x-p1.x);
         double b = p1.y-(m*p1.x);
 
-        //
 
+        //find the distance to the currently selected line
+        vector<Error>distance;
+        for(int i = 0;i < n; i++){
+            if(!(i == seed1 || i == seed2)) {
+                double err = points[i].y - (b + m*points[i].x);
+                err = max(err, -err);
+                Error a;
+                a.point=points[i];
+                a.error=err;
+                distance.push_back(a);
+            }
+        }
+        sort(distance.begin(), distance.end(), compare);
     }
     return 0;
  }

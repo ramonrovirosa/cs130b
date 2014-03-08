@@ -48,5 +48,24 @@
         j=j+2;
     }
 
+    int bestMedianEror=-1;
+    int iter=0;
+    int nIter=30;
+    while(iter<nIter){
+        int seed1=rand()%n;
+        int seed2=rand()%n;
+        while(seed1==seed2){
+            seed2=rand()%n;
+        }
+        iter++;
+        pointsXY p1 = points[seed1];
+        pointsXY p2 = points[seed2];
+
+        double m = (p2.y-p1.y)/(p2.x-p1.x);
+        double b = p1.y-(m*p1.x);
+
+        //
+
+    }
     return 0;
  }

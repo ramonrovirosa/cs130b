@@ -59,7 +59,8 @@ bool compareSmallest (Error a, Error b) { return (a.error < b.error); }
     int bestMedianEror=-1;
     int iter=0;
     int nIter=30;
-    while(iter<n){
+//    while(iter<n){
+    while(iter<5){
         int seed1=rand()%n;
         int seed2=rand()%n;
         while(seed1==seed2){
